@@ -9,12 +9,13 @@ jobs:
   build-and-deploy:
     name: Build and Deploy a Lando-based project
     runs-on: ubuntu-18.04
+    container: node:10
     steps:
     - uses: actions/checkout@v1
     - name: Before Install
       run: |
         sudo apt-get -y update
-        sudo apt-get -y install cgroup-bin curl
+        sudo apt-get -y install cgroup-bin
         sudo bash -c "curl -Ls https://github.com/lando/hyperdrive/releases/download/v0.5.4/hyperdrive > /usr/local/bin/hyperdrive"
         sudo chmod +x /usr/local/bin/hyperdrive
     - name: Startup Lando
