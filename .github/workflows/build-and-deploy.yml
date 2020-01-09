@@ -21,5 +21,4 @@ jobs:
       run: |
         hyperdrive -y --name "Github Actions" --email scott@campaignupgrade.org
         lando version
-      env: 
-        TERM: vt100
+
