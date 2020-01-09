@@ -31,6 +31,5 @@ jobs:
     - name: Deploy to Production with GitHub Action for WP Engine Git
       if: github.ref == 'refs/heads/production'
       uses: jovrtn/github-action-wpengine-git-deploy@0.1.2
-      run: echo 'Branch is Production'
       env:
         LOCAL_BRANCH: production
