@@ -3,13 +3,18 @@ name: Github Action for Lando
 on:
   push:
     branches:
-     - master
+     - production 
+     - staging
 
 jobs:     
   build-and-deploy:
     name: Build and Deploy a Lando-based project
     runs-on: ubuntu-18.04
-    # container: nodesource/xenial:0.10.46
+    env: 
+      TERM: vt100
+      WPENGINE_ENVIRONMENT_NAME: cu2dev
+      WPENGINE_SSH_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }}
+      WPENGINE_SSH_KEY_PUBLIC: ${{ secrets.WPENGINE_SSH_KEY_PUBLIC }}
     steps:
     - uses: actions/checkout@v1
     - name: Before Install
@@ -17,11 +22,14 @@ jobs:
         sudo apt-get -y update
         sudo bash -c "curl -Ls https://github.com/lando/hyperdrive/releases/download/v0.5.4/hyperdrive > /usr/local/bin/hyperdrive"
         sudo chmod +x /usr/local/bin/hyperdrive
+        hyperdrive -y --name "Github Actions" --email scott@campaignupgrade.org
     - name: Startup Lando
       run: |
-        hyperdrive -y --name "Github Actions" --email scott@campaignupgrade.org
         lando version
         ls -la
-      env: 
-        TERM: vt100
+    - name: Deploy to Production with GitHub Action for WP Engine Git
+      if: github.ref == 'production'
+      uses: jovrtn/github-action-wpengine-git-deploy@0.1.2
+      env:
+        LOCAL_BRANCH: production
 
