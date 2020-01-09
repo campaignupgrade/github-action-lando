@@ -32,4 +32,4 @@ jobs:
       if: github.ref == 'refs/heads/production'
       uses: jovrtn/github-action-wpengine-git-deploy@0.1.2
       env:
-        LOCAL_BRANCH: production
+        LOCAL_BRANCH: 'production'
