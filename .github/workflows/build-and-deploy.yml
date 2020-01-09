@@ -18,8 +18,11 @@ jobs:
         apt-get -y install cgroup-bin
         bash -c "curl -Ls https://github.com/lando/hyperdrive/releases/download/v0.5.4/hyperdrive > /usr/local/bin/hyperdrive"
         chmod +x /usr/local/bin/hyperdrive
+        la -la /usr/local/bin/hyperdrive
     - name: Startup Lando
       run: |
         hyperdrive -y --name "Github Actions" --email scott@campaignupgrade.org
         lando version
         lando start
+      env: 
+        TERM: xterm
