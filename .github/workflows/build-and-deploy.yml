@@ -9,13 +9,13 @@ jobs:
   build-and-deploy:
     name: Build and Deploy a Lando-based project
     runs-on: ubuntu-18.04
-    container: nodesource/xenial:0.10.46
+    # container: nodesource/xenial:0.10.46
     steps:
     - uses: actions/checkout@v1
     - name: Before Install
       run: |
         apt-get -y update
-        apt-get -y install cgroup-bin bc column
+        apt-get -y install cgroup-bin bc column bsdmainutils
         bash -c "curl -Ls https://github.com/lando/hyperdrive/releases/download/v0.5.4/hyperdrive > /usr/local/bin/hyperdrive"
         chmod +x /usr/local/bin/hyperdrive
     - name: Startup Lando
