@@ -3,14 +3,14 @@ name: Github Action for Lando
 on:
   push:
     branches:
-     - production 
+     - production
      - staging
 
-jobs:     
+jobs:
   build-and-deploy:
     name: Build and Deploy a Lando-based project
     runs-on: ubuntu-18.04
-    env: 
+    env:
       TERM: vt100
       WPENGINE_ENVIRONMENT_NAME: cu2dev
       WPENGINE_SSH_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }}
@@ -23,13 +23,14 @@ jobs:
         sudo bash -c "curl -Ls https://github.com/lando/hyperdrive/releases/download/v0.5.4/hyperdrive > /usr/local/bin/hyperdrive"
         sudo chmod +x /usr/local/bin/hyperdrive
         hyperdrive -y --name "Github Actions" --email scott@campaignupgrade.org
-    - name: Startup Lando
+    - name: Test Stuff
       run: |
         lando version
         ls -la
+        echo ${{github.ref}}
     - name: Deploy to Production with GitHub Action for WP Engine Git
-      if: github.ref == 'production'
+      if: github.ref == 'refs/heads/production'
       uses: jovrtn/github-action-wpengine-git-deploy@0.1.2
+      run: echo 'Branch is Production'
       env:
         LOCAL_BRANCH: production
-
