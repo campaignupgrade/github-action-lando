@@ -29,7 +29,7 @@ jobs:
         echo ${{github.ref}}
     - name: Deploy to Production with GitHub Action for WP Engine Git
       if: github.ref == 'refs/heads/production'
-      uses: campaignupgrade/github-action-wpengine-git-deploy@0.1.2
+      uses: campaignupgrade/github-action-wpengine-git-deploy@master
       env:
         WPENGINE_ENVIRONMENT_NAME: cu2dev
         LOCAL_BRANCH: 'production'
