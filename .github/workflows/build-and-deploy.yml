@@ -18,21 +18,21 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Provision for Lando
-      run: |
-        sudo apt-get -y update
-        sudo bash -c "curl -Ls https://github.com/lando/hyperdrive/releases/download/v0.5.4/hyperdrive > /usr/local/bin/hyperdrive"
-        sudo chmod +x /usr/local/bin/hyperdrive
-        hyperdrive -y --name "Github Actions" --email scott@campaignupgrade.org
+    # - name: Provision for Lando
+    #   run: |
+    #     sudo apt-get -y update
+    #     sudo bash -c "curl -Ls https://github.com/lando/hyperdrive/releases/download/v0.5.4/hyperdrive > /usr/local/bin/hyperdrive"
+    #     sudo chmod +x /usr/local/bin/hyperdrive
+    #     hyperdrive -y --name "Github Actions" --email scott@campaignupgrade.org
     - name: Test Stuff
       run: |
         printf "\nLando version" && lando version
         printf "\nGithub Ref = ${{ github.ref }}\n"
         # printf "\nGithub Object:\n" && printf '%s\n' "${ github[@] }"
-        printf "\nGithub Object = ${{ github[@] }}\n"
-    - name: Deploy to WPEngine
-      if: github.ref == 'refs/heads/production'
-      uses: campaignupgrade/github-action-wpengine-git-deploy@master
-      env:
-        WPENGINE_SITE_NAME: cu2dev
-        LOCAL_BRANCH: 'production'
+        printf "\nGithub Object = ${{ github@A }}\n"
+    # - name: Deploy to WPEngine
+    #   if: github.ref == 'refs/heads/production'
+    #   uses: campaignupgrade/github-action-wpengine-git-deploy@master
+    #   env:
+    #     WPENGINE_SITE_NAME: cu2dev
+    #     LOCAL_BRANCH: 'production'
