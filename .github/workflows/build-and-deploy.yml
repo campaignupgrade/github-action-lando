@@ -26,10 +26,9 @@ jobs:
         hyperdrive -y --name "Github Actions" --email scott@campaignupgrade.org
     - name: Test Stuff
       run: |
-        lando version
-        ls -la
+        printf "\nLando version" && lando version
         printf "\nGithub Ref = ${{ github.ref }}\n"
-        git status
+        printf "\nGithub Object:\n" && printf '%s\n' "${ github[@] }"
     - name: Deploy to WPEngine
       if: github.ref == 'refs/heads/production'
       uses: campaignupgrade/github-action-wpengine-git-deploy@master
