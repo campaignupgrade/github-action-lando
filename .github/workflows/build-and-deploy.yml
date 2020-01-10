@@ -15,7 +15,7 @@ jobs:
       WPENGINE_SSH_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }}
       WPENGINE_SSH_KEY_PUBLIC: ${{ secrets.WPENGINE_SSH_KEY_PUBLIC }}
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Before Install
       run: |
         sudo apt-get -y update
@@ -26,7 +26,7 @@ jobs:
       run: |
         lando version
         ls -la
-        echo ${{github.ref}}
+        printf "\nGithub Ref = ${{ github.ref }}"
     - name: Deploy to Production with GitHub Action for WP Engine Git
       if: github.ref == 'refs/heads/production'
       uses: campaignupgrade/github-action-wpengine-git-deploy@master
