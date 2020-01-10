@@ -25,11 +25,12 @@ jobs:
     #     sudo chmod +x /usr/local/bin/hyperdrive
     #     hyperdrive -y --name "Github Actions" --email scott@campaignupgrade.org
     - name: Test Stuff
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
+      # env:
+      #   GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
         # printf "\n\nLando version" && lando version
-        echo "$GITHUB_CONTEXT"
+        # printf "\n\nGithub Context (useful for evaluating conditionals):"
+        echo "${{ toJson(github) }}"
     # - name: Deploy to WPEngine
     #   if: github.ref == 'refs/heads/production'
     #   uses: campaignupgrade/github-action-wpengine-git-deploy@master
