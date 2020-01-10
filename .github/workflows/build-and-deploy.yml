@@ -28,7 +28,7 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
-        printf "\n\nLando version" && lando version
+        # printf "\n\nLando version" && lando version
         printf "\n\nGithub Context = ${ GITHUB_CONTEXT }"\n"
     # - name: Deploy to WPEngine
     #   if: github.ref == 'refs/heads/production'
