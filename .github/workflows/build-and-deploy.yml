@@ -29,7 +29,7 @@ jobs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
         # printf "\n\nLando version" && lando version
-        printf "\n\nGithub Context = ${ GITHUB_CONTEXT }"\n"
+        printf "\n\nGithub Context = ${ GITHUB_CONTEXT }\n"
     # - name: Deploy to WPEngine
     #   if: github.ref == 'refs/heads/production'
     #   uses: campaignupgrade/github-action-wpengine-git-deploy@master
