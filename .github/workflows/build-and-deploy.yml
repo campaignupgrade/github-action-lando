@@ -16,8 +16,8 @@ jobs:
       WPENGINE_SSH_KEY_PUBLIC: ${{ secrets.WPENGINE_SSH_KEY_PUBLIC }}
     steps:
       uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
+      with:
+        fetch-depth: '0'
     - name: Provision for Lando
       run: |
         sudo apt-get -y update
