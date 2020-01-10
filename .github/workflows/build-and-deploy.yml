@@ -15,8 +15,10 @@ jobs:
       WPENGINE_SSH_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }}
       WPENGINE_SSH_KEY_PUBLIC: ${{ secrets.WPENGINE_SSH_KEY_PUBLIC }}
     steps:
-    - uses: actions/checkout@v2
-    - name: Before Install
+      uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+    - name: Provision for Lando
       run: |
         sudo apt-get -y update
         sudo bash -c "curl -Ls https://github.com/lando/hyperdrive/releases/download/v0.5.4/hyperdrive > /usr/local/bin/hyperdrive"
@@ -26,8 +28,9 @@ jobs:
       run: |
         lando version
         ls -la
-        printf "\nGithub Ref = ${{ github.ref }}"
-    - name: Deploy to Production with GitHub Action for WP Engine Git
+        printf "\nGithub Ref = ${{ github.ref }}\n"
+        git status
+    - name: Deploy to WPEngine
       if: github.ref == 'refs/heads/production'
       uses: campaignupgrade/github-action-wpengine-git-deploy@master
       env:
