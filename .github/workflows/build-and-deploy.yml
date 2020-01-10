@@ -29,7 +29,7 @@ jobs:
         printf "\nLando version" && lando version
         printf "\nGithub Ref = ${{ github.ref }}\n"
         # printf "\nGithub Object:\n" && printf '%s\n' "${ github[@] }"
-        printf "\nGithub Object = ${{ github }}\n"
+        printf "\nGithub Object = ${{ github[@] }}\n"
     - name: Deploy to WPEngine
       if: github.ref == 'refs/heads/production'
       uses: campaignupgrade/github-action-wpengine-git-deploy@master
