@@ -31,5 +31,5 @@ jobs:
       if: github.ref == 'refs/heads/production'
       uses: campaignupgrade/github-action-wpengine-git-deploy@master
       env:
-        WPENGINE_ENVIRONMENT_NAME: cu2dev
+        WPENGINE_SITE_NAME: cu2dev
         LOCAL_BRANCH: 'production'
